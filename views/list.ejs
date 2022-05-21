@@ -1,0 +1,36 @@
+<%- include("header")-%>
+
+<body>
+    <div class="box" id="heading">
+        <h1> <%= listTitle %> </h1>
+    </div>
+
+    <div class="box">
+
+        <%newtasks.forEach((task)=>{%>
+        <form action="/delete" method="post">
+            <div class="item">
+                <input type="checkbox" name="checkbox" value="<%=task._id%>" onchange="this.form.submit()">
+                <p><%= task.name %></p>
+            </div>
+            <input type="hidden" name="listName" value="<%=listTitle%>">
+        </form>
+        <%});%>
+
+
+
+        <form class="item" action="/ " method="post">
+            <% if (newtasks.length === 0) {%>
+            <p>no tasks yet</p>
+            <%}%>
+
+        <input autocomplete="off" type="text" name="newItem" placeholder="New Task">
+        <button type="submit"name = "list" value = "<%=listTitle%>">+</button>
+        </form>
+    </div>
+
+
+    <!-- this form makes a post request to the home route and sends the data to js file -->
+
+
+    <%- include("footer")-%>
